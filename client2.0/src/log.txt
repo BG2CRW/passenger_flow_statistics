@@ -1,0 +1,33 @@
+//10/03/2017 14:34:12
+增加了开启和关闭存储图像，能输入存入位置和图片开始序号
+
+	order=-1 正常运行
+	order=0 修改所有指令   order=2 修改检测线和检测方向以外的量
+	order=1 关闭程序
+	order=3 关闭存储
+	order=4 开启存储
+	order=5 
+
+argv[]:
+1:IP
+2:port
+3:admin
+4:code
+5:IP main
+6:port main
+7:save position
+8:order of first pic
+
+
+//10/03/2017 16:04:17
+客户端增加了图片存储输入框和相应功能。
+client & server增加了超时检测，超时后自动跳过，防止死机（未验证)
+增加了对跟丢的点的处理（直接统计人数变化），
+增加对未检测出来的跟踪点的处理（继续跟踪）。
+Object[i].edge=0 正常跟踪 若没有检测到，加入新Object，同时edge=3
+Object[i].edge=1 到达边沿
+Object[i].edge=2 跟丢 卡尔曼滤波
+Object[i].edge=3 上次已经没有检测到
+
+//15/03/2017 21:31:58 
+消除了编号为1的轨迹依然显示的问题

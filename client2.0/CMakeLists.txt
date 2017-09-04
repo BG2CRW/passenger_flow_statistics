@@ -1,0 +1,51 @@
+cmake_minimum_required(VERSION 2.8)
+project(client)
+find_package(OpenCV REQUIRED)
+
+add_executable(client
+ src/main.cpp
+ src/comparision.cpp
+ src/trackpoint.cpp
+src/matqueue.cpp
+src/SocketMatTransmissionClient.cpp
+)
+
+#此client需要OpenCV
+target_link_libraries(client ${OpenCV_LIBS})
+#多线程动态库
+target_link_libraries(client /usr/lib/x86_64-linux-gnu/libpthread.so)
+
+#添加HCN。。。所在的目录
+include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/HCNetSDKCom/)
+include_directories(${PROJECT_SOURCE_DIR}/include/)
+include_directories(${PROJECT_SOURCE_DIR}/src/)
+
+#检测器需要的库
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/lib_Higo_SSD.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/libcaffe.so.1.0.0-rc3)
+#读IPC需要的库
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libhpr.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCCore.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libhcnetsdk.so)
+
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libanalyzedata.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCAlarm.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCCoreDevCfg.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCDisplay.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCGeneralCfgMgr.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCIndustry.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCPlayBack.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCPreview.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libHCVoiceTalk.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libiconv2.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libStreamTransClient.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libSystemTransform.so)
+
+#以下3个包有引用关系，必须按顺序添加。
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libPlayCtrl.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libSuperRender.so)
+target_link_libraries(client ${PROJECT_SOURCE_DIR}/HCNetSDKCom/libAudioRender.so)
+
+
+
