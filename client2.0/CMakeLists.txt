@@ -3,6 +3,7 @@ project(client)
 find_package(OpenCV REQUIRED)
 
 add_executable(client
+
  src/main.cpp
  src/comparision.cpp
  src/trackpoint.cpp
