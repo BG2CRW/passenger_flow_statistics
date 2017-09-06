@@ -24,5 +24,4 @@ private:
     string messageStr;
     volatile bool stopped;
 };
-
 #endif // THREAD_H
