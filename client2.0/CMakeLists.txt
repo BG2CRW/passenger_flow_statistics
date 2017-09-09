@@ -10,7 +10,6 @@ src/matqueue.cpp
 src/SocketMatTransmissionClient.cpp
 )
 
-
 #此client需要OpenCV
 target_link_libraries(client ${OpenCV_LIBS})
 #多线程动态库

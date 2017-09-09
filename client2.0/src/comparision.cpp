@@ -53,9 +53,9 @@ unsigned int &idgo,float prameters[][6],unsigned int *in_nums,unsigned int *out_
     }
     for(int i=0;i!=numsOld;i++)//读取跟踪
     {
-        if(object[i].edge==0||object[i].edge==3)///如果跟踪正常(包括正常和上次未检测到)，不是到达画面边缘或者跟丢，入列
+        //if(object[i].edge==0||object[i].edge==3)///如果跟踪正常(包括正常和上次未检测到)，不是到达画面边缘或者跟丢，入列
             b.addpoint(object[i].Target_x,object[i].Target_y);
-        if(object[i].edge==1)///到达边沿
+  /*      if(object[i].edge==1)///到达边沿
         {
         	///对轨迹进行进出门判断。
            trackpoint outdir = trackss.getTrackpoint(object[i].id+1);
@@ -65,7 +65,7 @@ unsigned int &idgo,float prameters[][6],unsigned int *in_nums,unsigned int *out_
            ///看首尾是否在检测的线两边
            DoorCross(outhead,outtail,prameters,in_nums,out_nums,LINENOW);
 	cout<<"edge=1: "<<in_nums[0]<<" in,"<<out_nums[0]<<" out"<<endl;
-        }
+        }*/
     }
 
     int x=a.getn();///检测点个数,也是匹配矩阵的行数
@@ -84,7 +84,7 @@ unsigned int &idgo,float prameters[][6],unsigned int *in_nums,unsigned int *out_
         }
         //std::cout<<std::endl;
     }
-    // std::cout<<std::endl;
+     //std::cout<<std::endl;
 
     std::vector<int> tempp;//存储已使用的跟踪点的序号
     std::vector<int> tempq;//存储已使用的检测点的序号
@@ -152,7 +152,7 @@ unsigned int &idgo,float prameters[][6],unsigned int *in_nums,unsigned int *out_
        }
        if(!tempb)///跟踪点没有匹配
        {
-           if(object[i].edge==0) ///没有检测到的edge=0的点直接放object1后面
+          /* if(object[i].edge==0) ///没有检测到的edge=0的点直接放object1后面
            {
                 object1[numsNew].Target_x=object[i].Target_x;
                 object1[numsNew].Target_y=object[i].Target_y;
@@ -161,8 +161,9 @@ unsigned int &idgo,float prameters[][6],unsigned int *in_nums,unsigned int *out_
                 object1[numsNew].edge=3;
                 numsNew++;
 		std::cout<<"numsNew increased. is: "<<numsNew<<std::endl;
-           }
-	else{
+           }*/
+	//else
+	{
            ///对未匹配的轨迹进行进出门判断。include edge=3
            trackpoint dir = trackss.getTrackpoint(object[i].id+1);
            cv::Point head=dir.getPoint(1);///得到轨迹首尾点
@@ -268,10 +269,17 @@ void comparision::DoorCross(cv::Point &head,cv::Point &tail,float parameters[][6
        {
            float directx=tail.x-head.x;
            float directy=tail.y-head.y;
-           if(directx*parameters[i][4]+directy*parameters[i][5]>0)
-            in_nums[i]++;
+           if(directx*parameters[i][4]+directy*parameters[i][5]>0) //parameters[i][4] is dirx
+           {
+                in_nums[i]++;
+                std::cout<<"(x2,y2):"<<tail.x<<","<<tail.y<<"   (x1,y1):"<<head.x<<","<<head.y<<std::endl;
+           }
            else if(directx*parameters[i][4]+directy*parameters[i][5]<0)
-            out_nums[i]++;
+           {
+                out_nums[i]++;
+                std::cout<<"                     direction:"<<parameters[i][4]<<","<<parameters[i][5]<<std::endl;
+                std::cout<<"                     (x2,y2):"<<tail.x<<","<<tail.y<<"   (x1,y1):"<<head.x<<","<<head.y<<std::endl;
+           }
            else{;}
        }
    }

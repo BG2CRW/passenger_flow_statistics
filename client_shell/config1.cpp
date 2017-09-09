@@ -44,38 +44,14 @@ void Config1::dispData()
     ui->lineEdit_16->setText(QString::number(camera_conf[1].sense,10));
     ui->lineEdit_10->setText(QString::number(camera_conf[1].hour,10));
     ui->lineEdit_11->setText(QString::number(camera_conf[1].min,10));
-
     ui->lineEdit->setText(QString("%1").arg(camera_conf[1].x[0]));
     ui->lineEdit_2->setText(QString("%1").arg(camera_conf[1].x[1]));
     ui->lineEdit_3->setText(QString("%1").arg(camera_conf[1].x[2]));
     ui->lineEdit_4->setText(QString("%1").arg(camera_conf[1].x[3]));
-    ui->lineEdit_5->setText(QString("%1").arg(camera_conf[1].x[4]));
-    ui->lineEdit_6->setText(QString("%1").arg(camera_conf[1].x[5]));
-    ui->lineEdit_9->setText(QString("%1").arg(camera_conf[1].x[6]));
-    ui->lineEdit_21->setText(QString("%1").arg(camera_conf[1].x[7]));
-    ui->lineEdit_24->setText(QString("%1").arg(camera_conf[1].x[8]));
-    ui->lineEdit_25->setText(QString("%1").arg(camera_conf[1].x[9]));
-    ui->lineEdit_26->setText(QString("%1").arg(camera_conf[1].x[10]));
-    ui->lineEdit_27->setText(QString("%1").arg(camera_conf[1].x[11]));
-    ui->lineEdit_30->setText(QString("%1").arg(camera_conf[1].x[12]));
-    ui->lineEdit_31->setText(QString("%1").arg(camera_conf[1].x[13]));
-    ui->lineEdit_32->setText(QString("%1").arg(camera_conf[1].x[14]));
-    ui->lineEdit_33->setText(QString("%1").arg(camera_conf[1].x[15]));
-    ui->lineEdit_36->setText(QString("%1").arg(camera_conf[1].x[16]));
-    ui->lineEdit_37->setText(QString("%1").arg(camera_conf[1].x[17]));
-    ui->lineEdit_38->setText(QString("%1").arg(camera_conf[1].x[18]));
-    ui->lineEdit_39->setText(QString("%1").arg(camera_conf[1].x[19]));
-
+    ui->lineEdit_5->setText(QString("%1").arg(camera_conf[1].dx[0]));
+    ui->lineEdit_6->setText(QString("%1").arg(camera_conf[1].dx[1]));
     ui->lineEdit_7->setText(QString("%1").arg(camera_conf[1].dx[2]));
     ui->lineEdit_8->setText(QString("%1").arg(camera_conf[1].dx[3]));
-    ui->lineEdit_22->setText(QString("%1").arg(camera_conf[1].dx[6]));//end
-    ui->lineEdit_23->setText(QString("%1").arg(camera_conf[1].dx[7]));//end
-    ui->lineEdit_28->setText(QString("%1").arg(camera_conf[1].dx[10]));
-    ui->lineEdit_29->setText(QString("%1").arg(camera_conf[1].dx[11]));
-    ui->lineEdit_34->setText(QString("%1").arg(camera_conf[1].dx[14]));//end
-    ui->lineEdit_35->setText(QString("%1").arg(camera_conf[1].dx[15]));//end
-    ui->lineEdit_40->setText(QString("%1").arg(camera_conf[1].dx[18]));
-    ui->lineEdit_41->setText(QString("%1").arg(camera_conf[1].dx[19]));
 
 
     ui->checkBox->setChecked((bool)camera_conf[1].SavePicFlag);
@@ -101,85 +77,25 @@ void Config1::saveData()
         old_x1[i]=camera_conf[1].x[i];
         old_dx1[i]=camera_conf[1].dx[i];
     }
-
     QString strText = ui->lineEdit->text();
-    camera_conf[1].x[0]=strText.toFloat();//x1
+    camera_conf[1].x[0]=strText.toFloat();
     strText = ui->lineEdit_2->text();
-    camera_conf[1].x[1]=strText.toFloat();//y1
+    camera_conf[1].x[1]=strText.toFloat();
+
     strText = ui->lineEdit_3->text();
-    camera_conf[1].x[2]=strText.toFloat();//x2
+    camera_conf[1].x[2]=strText.toFloat();
     strText = ui->lineEdit_4->text();
-    camera_conf[1].x[3]=strText.toFloat();//y2
+    camera_conf[1].x[3]=strText.toFloat();
+
     strText = ui->lineEdit_5->text();
-    camera_conf[1].x[4]=strText.toFloat();
+    camera_conf[1].dx[0]=strText.toFloat();
     strText = ui->lineEdit_6->text();
-    camera_conf[1].x[5]=strText.toFloat();
-    strText = ui->lineEdit_9->text();
-    camera_conf[1].x[6]=strText.toFloat();
-    strText = ui->lineEdit_21->text();
-    camera_conf[1].x[7]=strText.toFloat();
-    strText = ui->lineEdit_24->text();
-    camera_conf[1].x[8]=strText.toFloat();
-    strText = ui->lineEdit_25->text();
-    camera_conf[1].x[9]=strText.toFloat();
-    strText = ui->lineEdit_26->text();
-    camera_conf[1].x[10]=strText.toFloat();
-    strText = ui->lineEdit_27->text();
-    camera_conf[1].x[11]=strText.toFloat();
-    strText = ui->lineEdit_30->text();
-    camera_conf[1].x[12]=strText.toFloat();
-    strText = ui->lineEdit_31->text();
-    camera_conf[1].x[13]=strText.toFloat();
-    strText = ui->lineEdit_32->text();
-    camera_conf[1].x[14]=strText.toFloat();
-    strText = ui->lineEdit_33->text();
-    camera_conf[1].x[15]=strText.toFloat();
-    strText = ui->lineEdit_36->text();
-    camera_conf[1].x[16]=strText.toFloat();
-    strText = ui->lineEdit_37->text();
-    camera_conf[1].x[17]=strText.toFloat();
-    strText = ui->lineEdit_38->text();
-    camera_conf[1].x[18]=strText.toFloat();
-    strText = ui->lineEdit_39->text();
-    camera_conf[1].x[19]=strText.toFloat();
-
-
+    camera_conf[1].dx[1]=strText.toFloat();
 
     strText = ui->lineEdit_7->text();
     camera_conf[1].dx[2]=strText.toFloat();
     strText = ui->lineEdit_8->text();
     camera_conf[1].dx[3]=strText.toFloat();
-    strText = ui->lineEdit_22->text();
-    camera_conf[1].dx[6]=strText.toFloat();
-    strText = ui->lineEdit_23->text();
-    camera_conf[1].dx[7]=strText.toFloat();
-    strText = ui->lineEdit_28->text();
-    camera_conf[1].dx[10]=strText.toFloat();
-    strText = ui->lineEdit_29->text();
-    camera_conf[1].dx[11]=strText.toFloat();
-    strText = ui->lineEdit_34->text();
-    camera_conf[1].dx[14]=strText.toFloat();
-    strText = ui->lineEdit_35->text();
-    camera_conf[1].dx[15]=strText.toFloat();
-    strText = ui->lineEdit_40->text();
-    camera_conf[1].dx[18]=strText.toFloat();
-    strText = ui->lineEdit_41->text();
-    camera_conf[1].dx[19]=strText.toFloat();
-
-    camera_conf[1].dx[0]=(camera_conf[1].x[0]+camera_conf[1].x[2])/2;
-    camera_conf[1].dx[1]=(camera_conf[1].x[1]+camera_conf[1].x[3])/2;
-    camera_conf[1].dx[4]=(camera_conf[1].x[4]+camera_conf[1].x[6])/2;
-    camera_conf[1].dx[5]=(camera_conf[1].x[5]+camera_conf[1].x[7])/2;
-    camera_conf[1].dx[8]=(camera_conf[1].x[8]+camera_conf[1].x[10])/2;
-    camera_conf[1].dx[9]=(camera_conf[1].x[9]+camera_conf[1].x[11])/2;
-    camera_conf[1].dx[12]=(camera_conf[1].x[12]+camera_conf[1].x[14])/2;
-    camera_conf[1].dx[13]=(camera_conf[1].x[13]+camera_conf[1].x[15])/2;
-    camera_conf[1].dx[16]=(camera_conf[1].x[16]+camera_conf[1].x[18])/2;
-    camera_conf[1].dx[17]=(camera_conf[1].x[17]+camera_conf[1].x[19])/2;
-
-
-
-
 
     strText = ui->lineEdit_10->text();
     camera_conf[1].hour=(int)strText.toFloat();

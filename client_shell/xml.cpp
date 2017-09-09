@@ -45,44 +45,10 @@ int XmlContainer::writeXml(struct Camera_config *config_struct)
                      writer.writeTextElement("Bound1y", QString("%1").arg(config_struct[1].x[1]));
                      writer.writeTextElement("Bound2x", QString("%1").arg(config_struct[1].x[2]));
                      writer.writeTextElement("Bound2y", QString("%1").arg(config_struct[1].x[3]));
-                     writer.writeTextElement("Bound3x", QString("%1").arg(config_struct[1].x[4]));
-                     writer.writeTextElement("Bound3y", QString("%1").arg(config_struct[1].x[5]));
-                     writer.writeTextElement("Bound4x", QString("%1").arg(config_struct[1].x[6]));
-                     writer.writeTextElement("Bound4y", QString("%1").arg(config_struct[1].x[7]));
-                     writer.writeTextElement("Bound5x", QString("%1").arg(config_struct[1].x[8]));
-                     writer.writeTextElement("Bound5y", QString("%1").arg(config_struct[1].x[9]));
-                     writer.writeTextElement("Bound6x", QString("%1").arg(config_struct[1].x[10]));
-                     writer.writeTextElement("Bound6y", QString("%1").arg(config_struct[1].x[11]));
-                     writer.writeTextElement("Bound7x", QString("%1").arg(config_struct[1].x[12]));
-                     writer.writeTextElement("Bound7y", QString("%1").arg(config_struct[1].x[13]));
-                     writer.writeTextElement("Bound8x", QString("%1").arg(config_struct[1].x[14]));
-                     writer.writeTextElement("Bound8y", QString("%1").arg(config_struct[1].x[15]));
-                     writer.writeTextElement("Bound9x", QString("%1").arg(config_struct[1].x[16]));
-                     writer.writeTextElement("Bound9y", QString("%1").arg(config_struct[1].x[17]));
-                     writer.writeTextElement("Bound10x", QString("%1").arg(config_struct[1].x[18]));
-                     writer.writeTextElement("Bound10y", QString("%1").arg(config_struct[1].x[19]));
-
                      writer.writeTextElement("Dir_in1x", QString("%1").arg(config_struct[1].dx[0]));
                      writer.writeTextElement("Dir_in1y", QString("%1").arg(config_struct[1].dx[1]));
                      writer.writeTextElement("Dir_in2x", QString("%1").arg(config_struct[1].dx[2]));
                      writer.writeTextElement("Dir_in2y", QString("%1").arg(config_struct[1].dx[3]));
-                     writer.writeTextElement("Dir_in3x", QString("%1").arg(config_struct[1].dx[4]));
-                     writer.writeTextElement("Dir_in3y", QString("%1").arg(config_struct[1].dx[5]));
-                     writer.writeTextElement("Dir_in4x", QString("%1").arg(config_struct[1].dx[6]));
-                     writer.writeTextElement("Dir_in4y", QString("%1").arg(config_struct[1].dx[7]));
-                     writer.writeTextElement("Dir_in5x", QString("%1").arg(config_struct[1].dx[8]));
-                     writer.writeTextElement("Dir_in5y", QString("%1").arg(config_struct[1].dx[9]));
-                     writer.writeTextElement("Dir_in6x", QString("%1").arg(config_struct[1].dx[10]));
-                     writer.writeTextElement("Dir_in6y", QString("%1").arg(config_struct[1].dx[11]));
-                     writer.writeTextElement("Dir_in7x", QString("%1").arg(config_struct[1].dx[12]));
-                     writer.writeTextElement("Dir_in7y", QString("%1").arg(config_struct[1].dx[13]));
-                     writer.writeTextElement("Dir_in8x", QString("%1").arg(config_struct[1].dx[14]));
-                     writer.writeTextElement("Dir_in8y", QString("%1").arg(config_struct[1].dx[15]));
-                     writer.writeTextElement("Dir_in9x", QString("%1").arg(config_struct[1].dx[16]));
-                     writer.writeTextElement("Dir_in9y", QString("%1").arg(config_struct[1].dx[17]));
-                     writer.writeTextElement("Dir_in10x", QString("%1").arg(config_struct[1].dx[18]));
-                     writer.writeTextElement("Dir_in10y", QString("%1").arg(config_struct[1].dx[19]));
-
                      writer.writeTextElement("setTimeHour",QString::number(config_struct[1].hour, 10));
                      writer.writeTextElement("setTimeMin", QString::number(config_struct[1].min, 10));
                      writer.writeTextElement("SocketClientIP", TYPE.stringToChar(config_struct[1].IPCore,sizeof( config_struct[1].IPCore)));
@@ -194,15 +160,30 @@ int XmlContainer::readXml(struct Camera_config *read_struct)
                                        if (list_element.tagName() =="setTimeMin") {
                                             read_struct[0].min=list_element.text().toInt(&ok,10);
                                         }
-                                       if (list_element.tagName() =="Bound1x")        read_struct[0].x[0]=list_element.text().toFloat();
-                                       if (list_element.tagName() =="Bound1y")        read_struct[0].x[1]=list_element.text().toFloat();
-                                       if (list_element.tagName() =="Bound2x")        read_struct[0].x[2]=list_element.text().toFloat();
-                                       if (list_element.tagName() =="Bound2y")        read_struct[0].x[3]=list_element.text().toFloat();
-                                       if (list_element.tagName() =="Dir_in1x")         read_struct[0].dx[0]=list_element.text().toFloat();
-                                       if (list_element.tagName() =="Dir_in1y")         read_struct[0].dx[1]=list_element.text().toFloat();
-                                       if (list_element.tagName() =="Dir_in2x")         read_struct[0].dx[2]=list_element.text().toFloat();
-                                       if (list_element.tagName() =="Dir_in2x")         read_struct[0].dx[3]=list_element.text().toFloat();
-
+                                       if (list_element.tagName() =="Bound1x") {
+                                            read_struct[0].x[0]=list_element.text().toFloat();
+                                        }
+                                       if (list_element.tagName() =="Bound1y") {
+                                            read_struct[0].x[1]=list_element.text().toFloat();
+                                        }
+                                       if (list_element.tagName() =="Bound2x") {
+                                            read_struct[0].x[2]=list_element.text().toFloat();
+                                        }
+                                       if (list_element.tagName() =="Bound2y") {
+                                            read_struct[0].x[3]=list_element.text().toFloat();
+                                        }
+                                       if (list_element.tagName() =="Dir_in1x") {
+                                            read_struct[0].dx[0]=list_element.text().toFloat();
+                                        }
+                                       if (list_element.tagName() =="Dir_in1y") {
+                                            read_struct[0].dx[1]=list_element.text().toFloat();
+                                        }
+                                       if (list_element.tagName() =="Dir_in2x") {
+                                            read_struct[0].dx[2]=list_element.text().toFloat();
+                                        }
+                                       if (list_element.tagName() =="Dir_in2x") {
+                                            read_struct[0].dx[3]=list_element.text().toFloat();
+                                        }
                                        if (list_element.tagName() =="Order") {
                                             read_struct[0].order=list_element.text().toInt(&ok,10);
                                         }
@@ -253,47 +234,30 @@ int XmlContainer::readXml(struct Camera_config *read_struct)
                                         if (list_element.tagName() =="setTimeMin") {
                                              read_struct[1].min=list_element.text().toInt(&ok,10);
                                          }
-                                        if (list_element.tagName() =="Bound1x")        read_struct[1].x[0]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound1y")        read_struct[1].x[1]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound2x")        read_struct[1].x[2]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound2y")        read_struct[1].x[3]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound3x")        read_struct[1].x[4]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound3y")        read_struct[1].x[5]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound4x")        read_struct[1].x[6]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound4y")        read_struct[1].x[7]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound5x")        read_struct[1].x[8]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound5y")        read_struct[1].x[9]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound6x")        read_struct[1].x[10]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound6y")        read_struct[1].x[11]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound7x")        read_struct[1].x[12]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound7y")        read_struct[1].x[12]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound8x")        read_struct[1].x[14]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound8y")        read_struct[1].x[15]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound9x")        read_struct[1].x[16]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound9y")        read_struct[1].x[17]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound10x")        read_struct[1].x[18]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Bound10y")        read_struct[1].x[19]=list_element.text().toFloat();
-
-                                        if (list_element.tagName() =="Dir_in1x")         read_struct[1].dx[0]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in1y")         read_struct[1].dx[1]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in2x")         read_struct[1].dx[2]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in2x")         read_struct[1].dx[3]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in3x")         read_struct[1].dx[4]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in3y")         read_struct[1].dx[5]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in4x")         read_struct[1].dx[6]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in4x")         read_struct[1].dx[7]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in5x")         read_struct[1].dx[8]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in5y")         read_struct[1].dx[9]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in6x")         read_struct[1].dx[10]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in6x")         read_struct[1].dx[11]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in7x")         read_struct[1].dx[12]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in7y")         read_struct[1].dx[13]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in8x")         read_struct[1].dx[14]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in8x")         read_struct[1].dx[15]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in9x")         read_struct[1].dx[16]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in9y")         read_struct[1].dx[17]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in10x")         read_struct[1].dx[18]=list_element.text().toFloat();
-                                        if (list_element.tagName() =="Dir_in10x")         read_struct[1].dx[319]=list_element.text().toFloat();
+                                        if (list_element.tagName() =="Bound1x") {
+                                             read_struct[1].x[0]=list_element.text().toFloat();
+                                         }
+                                        if (list_element.tagName() =="Bound1y") {
+                                             read_struct[1].x[1]=list_element.text().toFloat();
+                                         }
+                                        if (list_element.tagName() =="Bound2x") {
+                                             read_struct[1].x[2]=list_element.text().toFloat();
+                                         }
+                                        if (list_element.tagName() =="Bound2y") {
+                                             read_struct[1].x[3]=list_element.text().toFloat();
+                                         }
+                                        if (list_element.tagName() =="Dir_in1x") {
+                                             read_struct[1].dx[0]=list_element.text().toFloat();
+                                         }
+                                        if (list_element.tagName() =="Dir_in1y") {
+                                             read_struct[1].dx[1]=list_element.text().toFloat();
+                                         }
+                                        if (list_element.tagName() =="Dir_in2x") {
+                                             read_struct[1].dx[2]=list_element.text().toFloat();
+                                         }
+                                        if (list_element.tagName() =="Dir_in2x") {
+                                             read_struct[1].dx[3]=list_element.text().toFloat();
+                                         }
                                         if (list_element.tagName() =="Order") {
                                              read_struct[1].order=list_element.text().toInt(&ok,10);
                                          }

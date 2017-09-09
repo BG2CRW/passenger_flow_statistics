@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     configXml.readXml(camera_conf);
     drawChartInit();
     connect(&timer,SIGNAL(timeout()),this,SLOT(writeLOG()));
-    timer.start(300000);//60000/min
+    timer.start(1800000);//60000/min
     drawChart(num);
 
 
@@ -112,15 +112,16 @@ void MainWindow::createBash(int i,int port)
     fprintf(fp,"%s","#!bin/bash\n");
     fprintf(fp,"%s","#client_shell.sh\n");
     fprintf(fp,"%s","sleep 1\n");
-    fprintf(fp,"%s","export LD_LIBRARY_PATH=\"/home/chaofan/client2.0/HCNetSDKCom\"\n");
-
+    fprintf(fp,"%s","export LD_LIBRARY_PATH=\"/home/higo/client2.0/HCNetSDKCom\"\n");
+        //fprintf(fp,"script -a record.txt\n");
     string path="cd "+camera_conf[i].corePath+"\n";
     fprintf(fp,"%s",path.c_str());
-
+    //fprintf(fp,"ls\n");
     string cmd="./client "+camera_conf[i].IPCamera+" "+type.itos(camera_conf[i].PortCamera)+" "+camera_conf[i].admin+" "+camera_conf[i].code+" "+camera_conf[i].IPCore+" "+type.itos(port)+" "+camera_conf[i].SavePicPath+" "+camera_conf[i].SavePicPrefix+"\n";
-
     fprintf(fp,"%s",cmd.c_str());
+    //fprintf(fp,"exit\n");
     fprintf(fp,"%s","#sleep 10\n");
+
     fclose(fp);
 }
 
@@ -316,11 +317,9 @@ void MainWindow::close()
 void MainWindow::on_pushButton_2_clicked()//open_camera0
 {
     threadA.setCMD("gnome-terminal -x bash -c \"sh client_shell0.sh\"");
-    //threadA.setCMD("gnome-terminal");
-    createBash(0,PORT);
     socketthreadA.setCam(0);
     socketthreadA.setPort(PORT);
-    //createBash(0,PORT);
+    createBash(0,PORT);
     PORT++;
     if(!threadA.isRunning())
     {
@@ -387,8 +386,6 @@ void MainWindow::on_pushButton_4_clicked()//open camera2
 void MainWindow::on_pushButton_3_clicked()//close_camera0
 {
     socketthreadA.stoped();
-    //usleep(10000);
-    //threadA.quit();
     threadA.stoped();
     //socketthreadA.wait();
     //threadA.wait();

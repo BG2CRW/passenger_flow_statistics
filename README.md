@@ -13,3 +13,4 @@ cd build
 qmake ..
 make
 
+mainwindow.cpp line 115: the address of core program need to be changed.

@@ -19,9 +19,9 @@ int server_sockfd = socket(AF_INET,SOCK_STREAM, 0);
 //int flags=fcntl(server_sockfd,F_GETFL,0);              // Get socket flags
 //fcntl(server_sockfd,F_SETFL,flags|O_NONBLOCK); //set no block
 
-struct timeval timeout={4,0};///set over time 
+/*struct timeval timeout={4,0};///set over time
 setsockopt(server_sockfd,SOL_SOCKET,SO_SNDTIMEO,(char*)&timeout,sizeof(struct timeval));
-setsockopt(server_sockfd,SOL_SOCKET,SO_RCVTIMEO,(char*)&timeout,sizeof(struct timeval));
+setsockopt(server_sockfd,SOL_SOCKET,SO_RCVTIMEO,(char*)&timeout,sizeof(struct timeval));*/
 
 struct sockaddr_in server_sockaddr;
 server_sockaddr.sin_family = AF_INET;
